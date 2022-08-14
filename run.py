@@ -2,8 +2,10 @@ import socket, time, os
 
 
 HOST = '0.0.0.0'                 
-PORT = int(os.environ.get('PORT'))
-VERSION = os.environ.get('VERSION')
+# PORT = int(os.environ.get('PORT')) 
+# VERSION = os.environ.get('VERSION')
+PORT = 5005
+VERSION ="1.0"
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen(1)
