@@ -1,8 +1,8 @@
 import socket, time, os 
 
 
-HOST = '0.0.0.0'                 # Symbolic name meaning all available interfaces
-PORT = int(os.environ.get('PORT'))              # Arbitrary non-privileged port
+HOST = '0.0.0.0'                 
+PORT = int(os.environ.get('PORT'))
 VERSION = os.environ.get('VERSION')
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
