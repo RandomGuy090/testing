@@ -2,12 +2,14 @@ pipeline{
 	agent any
 
 	stages{
+		stage("prepare"){
+			sh "python3 -m pip install -r requirements.txt"
+		}
 		stage("build"){
 			steps{
 				echo "echo building"
 				sh "uname -a"
 				sh "ls --all"
-				sh "python3 -m pip install -r requirements.txt"
 			}
 		}
 		stage("test"){
