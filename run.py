@@ -1,20 +1,16 @@
-import socket, time, os 
+from classes import Hello_world, Calculator
 
 
-HOST = '0.0.0.0'                 
-# PORT = int(os.environ.get('PORT')) 
-# VERSION = os.environ.get('VERSION')
-PORT = 5005
-VERSION ="1.0"
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen(1)
-    conn, addr = s.accept()
-    with conn:
-        print('Connected by', addr)
-        while True:
-            # data = conn.recv(1024)
-            # if not data: break
-            data = f"VERS: {VERSION} connected from: {addr}\n"
-            conn.sendall(data.encode())
-            time.sleep(1)
+Hello_world()
+
+calc = Calculator()
+
+
+
+print(f" 2 + 4 = {calc.addition(2, 4)}")
+print(f" 2 - 4 = {calc.subtraction(2, 4)}")
+print(f" 2 / 4 = {calc.division(2, 4)}")
+print(f" 2 * 4 = {calc.multiplication(2, 4)}")
+print(f" sqrt(2) = {calc.sqrt(2)}")
+print(f" 2 ** 4 = {calc.power(2, 4)}")
+
