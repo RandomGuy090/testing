@@ -5,6 +5,7 @@ pipeline{
 		stage("build"){
 			steps{
 				echo "echo building"
+				sh "uname -a"
 			}
 		}
 		stage("test"){
