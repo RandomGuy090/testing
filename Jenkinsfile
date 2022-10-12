@@ -1,5 +1,8 @@
 pipeline{
-	agent any
+	agent {
+		docker { image 'python-slim:latest' }
+
+	}
 
 	stages{
 		stage("prepare"){
