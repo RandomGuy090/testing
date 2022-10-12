@@ -7,7 +7,7 @@ pipeline{
 				echo "echo building"
 				sh "uname -a"
 				sh "ls --all"
-				sh "pytnon -m pip install -r requirements.txt"
+				sh "python -m pip install -r requirements.txt"
 			}
 		}
 		stage("test"){
