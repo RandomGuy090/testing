@@ -1,6 +1,6 @@
 pipeline{
 	agent {
-		docker { image 'python-slim:latest' }
+		docker { image 'python:slim' }
 
 	}
 
