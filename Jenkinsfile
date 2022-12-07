@@ -1,7 +1,7 @@
 pipeline{
 	agent {
-		docker { image 'python:slim' }
-
+		// docker { image 'python:slim' }
+		docker { dockerfile true }
 	}
 
 	stages{
@@ -13,8 +13,7 @@ pipeline{
 		stage("build"){
 			steps{
 				echo "echo building"
-				sh "uname -a"
-				sh "ls --all"
+				sh "python3 -c print('building')"
 			}
 		}
 		stage("test"){
