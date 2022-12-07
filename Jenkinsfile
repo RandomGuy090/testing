@@ -1,7 +1,7 @@
 pipeline{
 	agent {
 		// docker { image 'python:slim' }
-		docker { dockerfile true }
+		dockerfile true
 	}
 
 	stages{
