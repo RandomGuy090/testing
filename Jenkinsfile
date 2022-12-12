@@ -1,5 +1,15 @@
 pipeline{
 	agent { dockerfile true }
+	
+	 environment { 
+
+		registry = "randomguy090/testing" 
+
+		registryCredential = credentials('f0713cc8-1b33-42bb-8611-b151f7db8717') 
+
+		dockerImage = '' 
+
+    	}
 
 	stages{
 		stage("prepare"){
