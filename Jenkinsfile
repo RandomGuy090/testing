@@ -13,7 +13,8 @@ pipeline{
 			steps{
 				script {
 					echo "echo building";
-					def comm = "print('building')"
+					def comm = "print('building')";
+					echo ${comm};
 					sh  'python3 -c "${comm}"' ;
 				}
 			}
@@ -22,7 +23,7 @@ pipeline{
 			steps{
 				script {
 					echo "echo testing";
-					def comm = "print('testing')"
+					def comm = "print('testing')";
 					sh  'python3 -c "${comm}"' ;
 				}
 			}
@@ -32,7 +33,7 @@ pipeline{
 			steps{	
 				script {
 					echo "echo deploying";
-					def comm = "print('deploying')"
+					def comm = "print('deploying')";
 					sh  'python3 -c "${comm}"' ;
 				}
 			}
