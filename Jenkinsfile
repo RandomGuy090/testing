@@ -1,5 +1,10 @@
 pipeline{
-	agent any
+	// agent any
+	agent { 
+		dockerfile true
+		reuseNode true 
+	}
+
 
 
 	stages{
