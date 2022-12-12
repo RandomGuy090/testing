@@ -10,7 +10,7 @@ pipeline{
 		stage("build"){
 			steps{
 				echo "echo building"
-				sh "python3 -c print('building')"
+				sh(python3 -c print('building'))
 			}
 		}
 		stage("test"){
