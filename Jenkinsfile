@@ -17,6 +17,7 @@ pipeline{
 					def command = 'print("building python")';
 					command = "python -c '${command}'"
 					sh  "${command}" ;
+					dockerImage = docker.build("monishavasu/my-react-app:latest")
 				}
 			}
 		}
