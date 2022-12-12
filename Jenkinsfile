@@ -1,5 +1,4 @@
 pipeline{
-	// agent any
 	agent { 
 		dockerfile true
 		reuseNode true 
