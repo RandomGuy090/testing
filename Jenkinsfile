@@ -12,19 +12,22 @@ pipeline{
 			steps{
 				echo "echo building";
 				def comm = "print('building')"
-				sh  "python3 -c com" ;
+				sh  'python3 -c "com"' ;
 			}
 		}
 		stage("test"){
 			steps{
 				echo "echo testing";
-				sh "python3 -m pytest tests.py";
+				def comm = "print('testing')"
+				sh  'python3 -c "com"' ;
 			}
 
 		}
 		stage("deploy"){
 			steps{
 				echo "echo deploying";
+				def comm = "print('deploying')"
+				sh  'python3 -c "com"' ;
 			}
 		}
 	}
