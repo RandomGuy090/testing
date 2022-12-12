@@ -11,8 +11,8 @@ pipeline{
 		stage("build"){
 			steps{
 				echo "echo building";
-				def comm = "python3 -c print('building')" ;
-				sh '$comm';
+				def comm = "print('building')"
+				sh  "python3 -c com" ;
 			}
 		}
 		stage("test"){
