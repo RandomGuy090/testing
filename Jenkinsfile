@@ -1,6 +1,9 @@
 pipeline{
 	agent any
-
+	env{
+		env.TAG_NAME = 'develop';
+		env.REPO = 'randomguy090/testing';
+	}
 
 	stages{
 		stage("prepare"){
@@ -56,7 +59,7 @@ pipeline{
 					      
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 							sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-						      sh "docker push randomguy090/testing:latest";
+						      sh "docker push $REPO:$TAG_NAME";
 						}
 					}
 			    } 
