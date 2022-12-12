@@ -1,8 +1,15 @@
 pipeline{
+	// agent any
 	agent { 
-		dockerfile true
-		reuseNode true 
+	    docker {
+	        // image 'image-docker-1'
+	        dockerfile true
+	        args '--entrypoint="" -u root -v /var/run/docker.sock:/var/run/docker.sock'
+	        label 'slave-1'
+	    }
 	}
+
+
 
 	stages{
 		stage("prepare"){
