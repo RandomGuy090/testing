@@ -30,7 +30,7 @@ pipeline{
 					echo "echo building";
 
 					def command = 'print("building python")';
-					command = "python -c '${command}'"
+					command = "python3 -c '${command}'"
 					sh  "${command}" ;
 					sh 'docker build -t randomguy090/testing:latest .';
 				}
@@ -42,7 +42,7 @@ pipeline{
 					echo "echo testing";
 
 					def command = 'print("testing python")';
-					command = "python -c '${command}'"
+					command = "python3 -c '${command}'"
 					sh  "${command}" ;
 				}
 			}
@@ -54,7 +54,7 @@ pipeline{
 					echo "echo deploying";
 
 					def command = 'print("testing python")';
-					command = "python -c '${command}'"
+					command = "python3 -c '${command}'"
 					sh  "${command}" ;
 				}
 			}
