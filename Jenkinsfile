@@ -1,14 +1,5 @@
 pipeline{
-	// agent any
-	agent { 
-	    docker {
-	        // image 'image-docker-1'
-	        dockerfile true
-	        args '--entrypoint="" -u root -v /var/run/docker.sock:/var/run/docker.sock'
-	        label 'slave-1'
-	    }
-	}
-
+	agent any
 
 
 	stages{
