@@ -3,9 +3,8 @@ pipeline{
 
 	 environment { 
 
-		dockerRepo = "randomguy090/testing";
-		registryCredential = 'f0713cc8-1b33-42bb-8611-b151f7db8717';
-		dockerImage = '';
+		def dockerRepo = "randomguy090/testing";
+		def registryCredential = 'f0713cc8-1b33-42bb-8611-b151f7db8717';
 
     	}
 
