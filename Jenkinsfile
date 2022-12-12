@@ -1,7 +1,7 @@
 pipeline{
 	agent any
 	environment {
-		TAG_NAME = 'develop';
+		TAG_NAME = 'latest';
 		REPO = 'randomguy090/testing';
 	}
 
