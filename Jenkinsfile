@@ -1,12 +1,6 @@
 pipeline{
 	agent any
 
-	 environment { 
-
-		def dockerRepo = "randomguy090/testing";
-		def registryCredential = 'f0713cc8-1b33-42bb-8611-b151f7db8717';
-
-    	}
 
 	stages{
 		stage("prepare"){
@@ -60,9 +54,9 @@ pipeline{
 			      steps {
 				      script{
 					      
-					      withCredentials([usernamePassword(credentialsId: ${env.registryCredential}, passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 							sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-						      sh "docker push ${env.dockerRepo}:latest";
+						      sh "docker push randomguy090/testing:latest";
 						}
 					}
 			    } 
