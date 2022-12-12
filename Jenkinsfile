@@ -13,9 +13,10 @@ pipeline{
 			steps{
 				script {
 					echo "echo building";
-					def comm = "print('building')";
-					echo ${comm};
-					sh  'python3 -c "${comm}"' ;
+						
+					def command = 'print("building python")';
+					command = "python -c '${command}'"
+					sh  "${command}" ;
 				}
 			}
 		}
@@ -23,8 +24,10 @@ pipeline{
 			steps{
 				script {
 					echo "echo testing";
-					def comm = "print('testing')";
-					sh  'python3 -c "${comm}"' ;
+					
+					def command = 'print("testing python")';
+					command = "python -c '${command}'"
+					sh  "${command}" ;
 				}
 			}
 
@@ -33,8 +36,10 @@ pipeline{
 			steps{	
 				script {
 					echo "echo deploying";
-					def comm = "print('deploying')";
-					sh  'python3 -c "${comm}"' ;
+					
+					def command = 'print("testing python")';
+					command = "python -c '${command}'"
+					sh  "${command}" ;
 				}
 			}
 		}
