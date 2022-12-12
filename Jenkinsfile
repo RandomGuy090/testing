@@ -1,8 +1,8 @@
 pipeline{
 	agent any
-	env{
-		env.TAG_NAME = 'develop';
-		env.REPO = 'randomguy090/testing';
+	environment {
+		TAG_NAME = 'develop';
+		REPO = 'randomguy090/testing';
 	}
 
 	stages{
