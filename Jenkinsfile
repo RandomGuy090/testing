@@ -1,5 +1,5 @@
 pipeline{
-	agent any
+	agent { dockerfile true }
 
 	 environment { 
 
@@ -16,6 +16,8 @@ pipeline{
 			steps{
 				script{
 					sh "python3 -m pip install -r requirements.txt";
+					sh "apt install docker";
+
 				}
 			}
 		}
@@ -55,6 +57,7 @@ pipeline{
 			}
 		}
 		stage('Docker Push') {
+			agent any
 			      steps {
 					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 						sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
