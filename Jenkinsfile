@@ -16,7 +16,7 @@ pipeline{
 			steps{
 				script{
 					sh "python3 -m pip install -r requirements.txt";
-					sh "apt update && apt upgrade -y && apt install docker";
+					sh "apt update && apt upgrade -y && apt install docker -y ";
 
 				}
 			}
