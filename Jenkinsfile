@@ -17,7 +17,7 @@ pipeline{
 					def command = 'print("building python")';
 					command = "python -c '${command}'"
 					sh  "${command}" ;
-					dockerImage = docker.build("monishavasu/my-react-app:latest")
+					dockerImage = docker.build("randomguy090/testing:latest")
 				}
 			}
 		}
@@ -46,7 +46,7 @@ pipeline{
 		}
 		 stage('Push image') {
 			 steps{
-				withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+				withDockerRegistry([ credentialsId: "randomguy090", url: "" ]) {
 				dockerImage.push()
 				}
 			 }
