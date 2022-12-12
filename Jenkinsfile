@@ -1,4 +1,3 @@
-
 pipeline{
 	agent { dockerfile true }
 	
@@ -64,5 +63,5 @@ pipeline{
 					}
 			    } 
 		}
+	}
 }
-
