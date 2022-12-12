@@ -5,8 +5,6 @@ pipeline{
 		reuseNode true 
 	}
 
-
-
 	stages{
 		stage("prepare"){
 			steps{
