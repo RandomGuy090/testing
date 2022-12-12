@@ -27,7 +27,8 @@ pipeline{
 					def command = 'print("building python")';
 					command = "python -c '${command}'"
 					sh  "${command}" ;
-					dockerImage = docker.build("randomguy090/testing:latest")
+// 					dockerImage = docker.build("randomguy090/testing:latest")
+					sh 'docker build -t randomguy090/testing:latest .'
 				}
 			}
 		}
@@ -54,14 +55,13 @@ pipeline{
 				}
 			}
 		}
-		 stage('Push image') {
-			 steps{
-				 script {
-					withDockerRegistry([ credentialsId: "randomguy090", url: "" ]) {
-					dockerImage.push()
-					}
-				}
-			 }
-		    }    
+		stage('Docker Push') {
+		agent any
+		      steps {
+			withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+				sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+			  sh 'docker pushrandomguy090/testing:latest'
+			}
+		      } 
 	}
 }
