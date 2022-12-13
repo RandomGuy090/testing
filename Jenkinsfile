@@ -15,6 +15,7 @@ pipeline{
 		stage("Preparing"){
 			steps{
 				script{
+
 					echo "$env.BRANCH_NAME";
 					if( env.RUN_FOR.contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
@@ -23,6 +24,7 @@ pipeline{
 						return
 					}
 					
+
 
 					sh "apt update && apt upgrade -y ";
 					sh "apt install python3-pip -y ";
