@@ -7,7 +7,7 @@ pipeline{
 		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
 		
 		REPO = "$REPO_USER/$REPO_NAME";
-		RUN_FOR = "main,master";
+		RUN_FOR = "master";
 	}
 
 	stages{
