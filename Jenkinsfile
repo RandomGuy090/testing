@@ -1,17 +1,14 @@
 pipeline{
 	
-	
-	
-	
 	agent any
 	environment {
-
+		
 		TAG_NAME = 'latest';
 		REPO_USER = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[-2].toLowerCase()}";
 		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
 		
 		REPO = "$REPO_USER/$REPO_NAME";
-
+		RUN_FOR = ["main", "master"];
 	}
 
 	stages{
@@ -20,10 +17,13 @@ pipeline{
 				script{
 
 					echo "$env.BRANCH_NAME";
-					if( env.BRANCH_NAME != "main" ) {
+					if( env.RUN_FOR.contains(env.BRANCH_NAME) ) {
+						echo "branch is not main";
 						currentBuild.result = 'SUCCESS'
+						error("wrong branch");
 						return
 					}
+					
 
 
 					sh "apt update && apt upgrade -y ";
