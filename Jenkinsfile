@@ -3,7 +3,7 @@ pipeline{
 
 	environment {
 		
-		TAG_NAME = 'latest';
+		// TAG_NAME = 'latest';
 		REPO_USER = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[-2].toLowerCase()}";
 		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
 		
@@ -19,12 +19,19 @@ pipeline{
 				script{
 
 					if (env.BRANCH_NAME == "main"){
-						TAG_NAME = "latest";
+
+						sh 'TAG_NAME="latest"';
 					}
 
 					if (env.BRANCH_NAME == "develop"){
-						TAG_NAME = "develop";
+						sh 'TAG_NAME="develop"';
+
 					}
+
+					def TAG_NAME= sh( 
+						script: 'echo $TAG_NAME',
+						returnStatus: true
+						 )
 
 
 					echo "$env.BRANCH_NAME";
@@ -52,9 +59,15 @@ pipeline{
 		stage("Building"){
 			steps{
 				script {
+
+					def TAG_NAME= sh( 
+						script: 'echo $TAG_NAME',
+						returnStatus: true
+						 )
+
 					echo "---------------building---------------";
 					echo "building docker image via built in function";
-					IMG = docker.build("$REPO:$TAG_name");
+					IMG = docker.build("$REPO:$TAG_NAME");
 					echo "build image: $IMG";
 
 				}
@@ -74,6 +87,12 @@ pipeline{
 			      steps {
 				      script{
 						echo "---------------pushing to docker hub---------------";
+
+						def TAG_NAME= sh( 
+							script: 'echo $TAG_NAME',
+							returnStatus: true
+							)
+
 
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 							echo "deploying: $IMG";
