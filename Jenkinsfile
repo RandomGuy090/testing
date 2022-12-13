@@ -62,7 +62,7 @@ pipeline{
 						    //   sh "docker push $REPO:$TAG_NAME";
 							echo "deploying: $IMG";
 
-							IMG.push($TAG_NAME);
+							IMG.push(TAG_NAME);
 						}
 					}
 			    } 
