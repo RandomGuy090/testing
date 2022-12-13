@@ -16,22 +16,22 @@ pipeline{
 	stages{
 		stage("Preparing"){
 			steps{
+				if (env.BRANCH_NAME == "main"){
+
+					// sh 'TAG_NAME="latest"';
+					sh 'echo latest > TAG_NAME';
+				}
+
+				if (env.BRANCH_NAME == "develop"){
+					// sh 'TAG_NAME="develop"';
+					sh 'echo develop > TAG_NAME';
+
+				}
+
 				script{
+					
+					 TAG_NAME = readFile('TAG_NAME').trim()					
 
-					if (env.BRANCH_NAME == "main"){
-
-						sh 'TAG_NAME="latest"';
-					}
-
-					if (env.BRANCH_NAME == "develop"){
-						sh 'TAG_NAME="develop"';
-
-					}
-
-					TAG_NAME= sh( 
-						script: 'echo $TAG_NAME',
-						returnStatus: true
-						 )
 
 
 					echo "$env.BRANCH_NAME";
@@ -60,10 +60,10 @@ pipeline{
 			steps{
 				script {
 
-					TAG_NAME= sh( 
-						script: 'echo $TAG_NAME',
-						returnStatus: true
-						 )
+					// TAG_NAME= sh( 
+					// 	script: 'echo $TAG_NAME',
+					// 	returnStatus: true
+					// 	 )
 
 					echo "---------------building---------------";
 					echo "building docker image via built in function";
@@ -88,10 +88,10 @@ pipeline{
 				      script{
 						echo "---------------pushing to docker hub---------------";
 
-						TAG_NAME= sh( 
-							script: 'echo $TAG_NAME',
-							returnStatus: true
-							)
+						// TAG_NAME= sh( 
+						// 	script: 'echo $TAG_NAME',
+						// 	returnStatus: true
+						// 	)
 
 
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
