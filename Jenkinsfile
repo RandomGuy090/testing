@@ -1,6 +1,16 @@
 pipeline{
 	agent any
+	if (env.BRANCH_NAME == "main"){
 
+					// sh 'TAG_NAME="latest"';
+					sh 'echo latest > TAG_NAME';
+				}
+
+				if (env.BRANCH_NAME == "develop"){
+					// sh 'TAG_NAME="develop"';
+					sh 'echo develop > TAG_NAME';
+
+				}
 	environment {
 		
 		// TAG_NAME = 'latest';
@@ -16,17 +26,8 @@ pipeline{
 	stages{
 		stage("Preparing"){
 			steps{
-				if (env.BRANCH_NAME == "main"){
 
-					// sh 'TAG_NAME="latest"';
-					sh 'echo latest > TAG_NAME';
-				}
-
-				if (env.BRANCH_NAME == "develop"){
-					// sh 'TAG_NAME="develop"';
-					sh 'echo develop > TAG_NAME';
-
-				}
+				
 
 				script{
 					
