@@ -1,11 +1,11 @@
 pipeline{
 	agent any
 	environment {
-		TAG_NAME = '0.1';
+		TAG_NAME = 'latest';
 
 		REPO = 'randomguy090/testing';
 		IMG = "";
-		LAST_TAG = "";
+
 
 	}
 
@@ -18,18 +18,7 @@ pipeline{
 					
 					sh "python3 -m pip install -r requirements.txt";
 					sh "apt install docker -y ";
-					$LAST_TAG = sh (
-						script: "docker images | grep ${REPO} | tr -s ' ' | cut -f2 -d' '", 
-						returnStdout: true
-					).split("-")
-					
-					echo $LAST_TAG.toString();
-					echo $LAST_TAG[0];
-					$LAST_TAG = $LAST_TAG[0];
-					Float $LAST_TAG = $LAST_TAG
-					$LAST_TAG = $LAST_TAG + 0.1;
-					$LAST_TAG = $LAST_TAG.round(2)
-					echo "LAST_TAG $LAST_TAG"
+
 
 				}
 			}
