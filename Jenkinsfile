@@ -1,11 +1,11 @@
 pipeline{
 	agent any
 	environment {
+		
 		TAG_NAME = 'latest';
-		REPO_USER = "";
-		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}"
-		REPO = "randomguy090/$REPO_NAME";
-		IMG = "";
+		REPO_USER = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[-2]}";
+		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
+		REPO = "$REPO_USER/$REPO_NAME";
 
 
 	}
