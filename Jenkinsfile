@@ -30,7 +30,7 @@ pipeline{
 					// IMG = docker.image("xD");
 					// echo "id of container: ${IMG}";
 					IMG = docker.build("$REPO:$TAG_name");
-					echo "build image: $build_res";
+					echo "build image: $IMG";
 
 				}
 			}
