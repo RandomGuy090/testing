@@ -22,7 +22,9 @@ pipeline{
 						script: "docker images | grep ${REPO} | tr -s ' ' | cut -f2 -d' '", 
 						returnStdout: true
 					).split("-")
+					
 					echo $LAST_TAG;
+					echo $LAST_TAG.getClass();
 					echo $LAST_TAG[0];
 					$LAST_TAG = $LAST_TAG[0];
 					$LAST_TAG = Float.valueOf($LAST_TAG);
