@@ -28,6 +28,7 @@ pipeline{
 
 
 					echo "$env.BRANCH_NAME";
+					echo "$env.TAG_NAME";
 					if( ! env.RUN_FOR.tokenize(",").contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
 						currentBuild.result = 'SUCCESS';
