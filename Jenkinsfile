@@ -20,7 +20,9 @@ pipeline{
 				script{
 					echo "$env.BRANCH_NAME";
 					if( env.BRANCH_NAME != "main" ) {
+						echo "branch is not main";
 						currentBuild.result = 'SUCCESS'
+						error("wrong branch");
 						return
 					}
 					
