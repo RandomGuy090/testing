@@ -26,7 +26,7 @@ pipeline{
 					echo $LAST_TAG.toString();
 					echo $LAST_TAG[0];
 					$LAST_TAG = $LAST_TAG[0];
-					$LAST_TAG = Float.valueOf($LAST_TAG);
+					Float $LAST_TAG = valu$LAST_TAGe
 					$LAST_TAG = $LAST_TAG + 0.1;
 					$LAST_TAG = $LAST_TAG.round(2)
 					echo "LAST_TAG $LAST_TAG"
