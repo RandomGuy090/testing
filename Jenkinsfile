@@ -1,5 +1,4 @@
 pipeline{
-	
 	agent any
 	environment {
 		
@@ -17,7 +16,7 @@ pipeline{
 				script{
 
 					echo "$env.BRANCH_NAME";
-					if( env.RUN_FOR.contains(env.BRANCH_NAME) ) {
+					if( ! env.RUN_FOR.contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
 						currentBuild.result = 'SUCCESS'
 						error("wrong branch");
