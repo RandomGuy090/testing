@@ -21,8 +21,10 @@ pipeline{
 					$LAST_TAG = sh (
 						script: "docker images | grep ${REPO} | tr -s ' ' | cut -f2 -d' '", 
 						returnStdout: true
-					).trim()
+					).split("-")
 					echo $LAST_TAG;
+					echo $LAST_TAG[0];
+					$LAST_TAG = $LAST_TAG[0];
 					$LAST_TAG = Float.valueOf($LAST_TAG);
 					$LAST_TAG = $LAST_TAG + 0.1;
 					$LAST_TAG = $LAST_TAG.round(2)
