@@ -27,8 +27,8 @@ pipeline{
 					echo "building docker image via shell";
 					sh 'docker build -t randomguy090/testing:latest .';
 					echo "building docker image via built in function";
-					env.IMG = docker.image("xD");
-					echo "id of container: ${env.IMG}";
+					IMG = docker.image("xD");
+					echo "id of container: ${IMG}";
 
 				}
 			}
@@ -39,7 +39,7 @@ pipeline{
 					echo "---------------testing---------------";
 					echo "list all images built";
 					sh "docker images ls";
-					echo "$env.IMG";
+					echo "$IMG";
 				}
 			}
 		}
