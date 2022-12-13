@@ -2,7 +2,7 @@ pipeline{
 	agent any
 	environment {
 		TAG_NAME = '0.1';
-		
+
 		REPO = 'randomguy090/testing';
 		IMG = "";
 		LAST_TAG = "";
@@ -18,7 +18,7 @@ pipeline{
 					
 					sh "python3 -m pip install -r requirements.txt";
 					sh "apt install docker -y ";
-					$LAST_TAG = sh "sudo docker images | grep ${REPO}  | tr -s ' ' | cut -f3 -d' '"'
+					$LAST_TAG = sh "sudo docker images | grep ${REPO}  | tr -s ' ' | cut -f3 -d' '"
 					echo $LAST_TAG;
 
 				}
