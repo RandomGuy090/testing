@@ -1,6 +1,6 @@
 pipeline{
 	agent any
-	
+
 	environment {
 		
 		TAG_NAME = 'latest';
@@ -10,13 +10,16 @@ pipeline{
 		REPO = "$REPO_USER/$REPO_NAME";
 		RUN_FOR = "main,master";
 		
-		if (env.BRANCH_NAME == "main"){
-			TAG_NAME = "latest";
-		}
+		script{
+			if (env.BRANCH_NAME == "main"){
+				TAG_NAME = "latest";
+			}
 
-		if (env.BRANCH_NAME == "develop"){
-			TAG_NAME = "develop";
+			if (env.BRANCH_NAME == "develop"){
+				TAG_NAME = "develop";
+			}
 		}
+		
 	}
 
 	stages{
