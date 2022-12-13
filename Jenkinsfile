@@ -18,7 +18,10 @@ pipeline{
 					
 					sh "python3 -m pip install -r requirements.txt";
 					sh "apt install docker -y ";
-					$LAST_TAG = sh "sudo docker images | grep ${REPO} | tr -s ' ' | cut -f2 -d' '"
+					$LAST_TAG = sh (
+						script: "sudo docker images | grep ${REPO} | tr -s ' ' | cut -f2 -d' '", 
+						returnStdout: true
+					).trim()
 					echo $LAST_TAG;
 					$LAST_TAG = Float.valueOf($LAST_TAG);
 					$LAST_TAG = $LAST_TAG + 0.1;
