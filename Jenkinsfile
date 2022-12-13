@@ -1,5 +1,6 @@
 pipeline{
 	agent any
+
 	environment {
 		
 		TAG_NAME = 'latest';
@@ -7,7 +8,9 @@ pipeline{
 		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
 		
 		REPO = "$REPO_USER/$REPO_NAME";
-		RUN_FOR = "main,master";
+		RUN_FOR = "main,develop";
+		
+		
 	}
 
 	stages{
@@ -15,10 +18,19 @@ pipeline{
 			steps{
 				script{
 
+					if (env.BRANCH_NAME == "main"){
+						env.TAG_NAME = "latest";
+					}
+
+					if (env.BRANCH_NAME == "develop"){
+						env.TAG_NAME = "develop";
+					}
+
+
 					echo "$env.BRANCH_NAME";
 					if( ! env.RUN_FOR.tokenize(",").contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
-						currentBuild.result = 'SUCCESS'
+						currentBuild.result = 'SUCCESS';
 						error("wrong branch");
 						return
 					}
