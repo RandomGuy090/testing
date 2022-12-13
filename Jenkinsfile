@@ -19,16 +19,16 @@ pipeline{
 				script{
 
 					if (env.BRANCH_NAME == "main"){
-						env.TAG_NAME = "latest";
+						TAG_NAME = "latest";
 					}
 
 					if (env.BRANCH_NAME == "develop"){
-						env.TAG_NAME = "develop";
+						TAG_NAME = "develop";
 					}
 
 
 					echo "$env.BRANCH_NAME";
-					echo "$env.TAG_NAME";
+					echo "$TAG_NAME";
 					if( ! env.RUN_FOR.tokenize(",").contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
 						currentBuild.result = 'SUCCESS';
