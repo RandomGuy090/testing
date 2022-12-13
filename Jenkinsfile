@@ -10,15 +10,6 @@ pipeline{
 		REPO = "$REPO_USER/$REPO_NAME";
 		RUN_FOR = "main,master";
 		
-		script{
-			if (env.BRANCH_NAME == "main"){
-				TAG_NAME = "latest";
-			}
-
-			if (env.BRANCH_NAME == "develop"){
-				TAG_NAME = "develop";
-			}
-		}
 		
 	}
 
@@ -26,6 +17,15 @@ pipeline{
 		stage("Preparing"){
 			steps{
 				script{
+
+					if (env.BRANCH_NAME == "main"){
+						env.TAG_NAME = "latest";
+					}
+
+					if (env.BRANCH_NAME == "develop"){
+						env.TAG_NAME = "develop";
+					}
+
 
 					echo "$env.BRANCH_NAME";
 					if( ! env.RUN_FOR.tokenize(",").contains(env.BRANCH_NAME) ) {
