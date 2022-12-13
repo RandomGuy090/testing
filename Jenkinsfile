@@ -24,7 +24,6 @@ pipeline{
 					).split("-")
 					
 					echo $LAST_TAG.toString();
-					echo $LAST_TAG.getClass();
 					echo $LAST_TAG[0];
 					$LAST_TAG = $LAST_TAG[0];
 					$LAST_TAG = Float.valueOf($LAST_TAG);
