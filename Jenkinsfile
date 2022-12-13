@@ -27,9 +27,9 @@ pipeline{
 					// echo "building docker image via shell";
 					// sh 'docker build -t randomguy090/testing:latest .';
 					echo "building docker image via built in function";
-					IMG = docker.image("xD");
-					echo "id of container: ${IMG}";
-					build_res = docker.build(IMG);
+					// IMG = docker.image("xD");
+					// echo "id of container: ${IMG}";
+					IMG = docker.build("$REPO:$TAG_name");
 					echo "build image: $build_res";
 
 				}
