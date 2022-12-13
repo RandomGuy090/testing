@@ -2,6 +2,7 @@ pipeline{
 	agent any
 	environment {
 		TAG_NAME = '0.1';
+		
 		REPO = 'randomguy090/testing';
 		IMG = "";
 		LAST_TAG = "";
