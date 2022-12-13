@@ -8,6 +8,13 @@ pipeline{
 		
 		REPO = "$REPO_USER/$REPO_NAME";
 		RUN_FOR = "main,master";
+		
+		if (env.BRANCH_NAME == "main"){
+			TAG_NAME = "latest";
+		}
+		if (env.BRANCH_NAME == "develop"){
+			TAG_NAME = "develop";
+		}
 	}
 
 	stages{
@@ -18,7 +25,7 @@ pipeline{
 					echo "$env.BRANCH_NAME";
 					if( ! env.RUN_FOR.tokenize(",").contains(env.BRANCH_NAME) ) {
 						echo "branch is not main";
-						currentBuild.result = 'SUCCESS'
+						currentBuild.result = 'SUCCESS';
 						error("wrong branch");
 						return
 					}
