@@ -19,7 +19,7 @@ pipeline{
 					sh "python3 -m pip install -r requirements.txt";
 					sh "apt install docker -y ";
 
-
+					echo "build tag ${env.BUILD_TAG}";
 				}
 			}
 		}
