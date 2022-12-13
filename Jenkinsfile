@@ -1,5 +1,6 @@
 pipeline{
 	agent any
+	
 	environment {
 		
 		TAG_NAME = 'latest';
@@ -12,6 +13,7 @@ pipeline{
 		if (env.BRANCH_NAME == "main"){
 			TAG_NAME = "latest";
 		}
+
 		if (env.BRANCH_NAME == "develop"){
 			TAG_NAME = "develop";
 		}
