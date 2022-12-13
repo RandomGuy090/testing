@@ -2,8 +2,9 @@ pipeline{
 	agent any
 	environment {
 		TAG_NAME = 'latest';
-
-		REPO = 'randomguy090/testing';
+		REPO_USER = "";
+		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}"
+		REPO = "randomguy090/$REPO_NAME";
 		IMG = "";
 
 
@@ -20,7 +21,7 @@ pipeline{
 					sh "apt install docker -y ";
 
 					echo "build tag ${env.BUILD_TAG}";
-					echo "repo name: ${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}"
+					echo "repo name: ${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[1]}"
 				}
 			}
 		}
