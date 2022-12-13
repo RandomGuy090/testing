@@ -21,24 +21,23 @@ pipeline{
 		stage("build"){
 			steps{
 				script {
-					echo "echo building";
+					echo "---------------building---------------";
 
-					def command = 'print("building python")';
-					command = "python3 -c '${command}'"
-					sh  "${command}" ;
+					echo "building docker image via shell";
 					sh 'docker build -t randomguy090/testing:latest .';
+					echo "building docker image via built in function";
 					def img = docker.image("xD");
+					echo "id of container: ${img}";
+
 				}
 			}
 		}
 		stage("test"){
 			steps{
 				script {
-					echo "echo testing";
-
-					def command = 'print("testing python")';
-					command = "python3 -c '${command}'"
-					sh  "${command}" ;
+					echo "---------------testing---------------";
+					echo "list all images built";
+					sh "docker images ls";
 				}
 			}
 		}
@@ -46,17 +45,15 @@ pipeline{
 		stage("deploy"){
 			steps{	
 				script {
-					echo "echo deploying";
+					echo "---------------deploying---------------";
 
-					def command = 'print("testing python")';
-					command = "python3 -c '${command}'"
-					sh  "${command}" ;
 				}
 			}
 		}
 		stage('Docker Push') {
 			      steps {
 				      script{
+						echo "---------------pushing to docker hub---------------";
 					      
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 							sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
