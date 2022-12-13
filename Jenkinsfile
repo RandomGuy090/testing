@@ -27,7 +27,7 @@ pipeline{
 					command = "python3 -c '${command}'"
 					sh  "${command}" ;
 					sh 'docker build -t randomguy090/testing:latest .';
-					def img = image("xD");
+					def img = docker.image("xD");
 				}
 			}
 		}
