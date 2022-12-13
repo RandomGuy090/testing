@@ -1,16 +1,6 @@
 pipeline{
 	agent any
-	if (env.BRANCH_NAME == "main"){
-
-					// sh 'TAG_NAME="latest"';
-					sh 'echo latest > TAG_NAME';
-				}
-
-				if (env.BRANCH_NAME == "develop"){
-					// sh 'TAG_NAME="develop"';
-					sh 'echo develop > TAG_NAME';
-
-				}
+	
 	environment {
 		
 		// TAG_NAME = 'latest';
@@ -27,9 +17,21 @@ pipeline{
 		stage("Preparing"){
 			steps{
 
-				
 
 				script{
+
+
+					if (env.BRANCH_NAME == "main"){
+
+						// sh 'TAG_NAME="latest"';
+						sh 'echo latest > TAG_NAME';
+					}
+
+					if (env.BRANCH_NAME == "develop"){
+						// sh 'TAG_NAME="develop"';
+						sh 'echo develop > TAG_NAME';
+
+					}
 					
 					 TAG_NAME = readFile('TAG_NAME').trim()					
 
