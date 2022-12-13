@@ -28,7 +28,7 @@ pipeline{
 
 					}
 
-					def TAG_NAME= sh( 
+					TAG_NAME= sh( 
 						script: 'echo $TAG_NAME',
 						returnStatus: true
 						 )
@@ -60,7 +60,7 @@ pipeline{
 			steps{
 				script {
 
-					def TAG_NAME= sh( 
+					TAG_NAME= sh( 
 						script: 'echo $TAG_NAME',
 						returnStatus: true
 						 )
@@ -88,7 +88,7 @@ pipeline{
 				      script{
 						echo "---------------pushing to docker hub---------------";
 
-						def TAG_NAME= sh( 
+						TAG_NAME= sh( 
 							script: 'echo $TAG_NAME',
 							returnStatus: true
 							)
