@@ -21,7 +21,7 @@ pipeline{
 					sh "apt install docker -y ";
 
 					echo "build tag ${env.BUILD_TAG}";
-					echo "repo name: ${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[1]}"
+					echo "repo name: ${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last()}"
 				}
 			}
 		}
