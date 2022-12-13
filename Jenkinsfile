@@ -10,7 +10,6 @@ pipeline{
 		REPO = "$REPO_USER/$REPO_NAME";
 		RUN_FOR = "main,develop";
 		
-		
 	}
 
 	stages{
@@ -23,12 +22,10 @@ pipeline{
 
 					if (env.BRANCH_NAME == "main"){
 
-						// sh 'TAG_NAME="latest"';
 						sh 'echo latest > TAG_NAME';
 					}
 
 					if (env.BRANCH_NAME == "develop"){
-						// sh 'TAG_NAME="develop"';
 						sh 'echo develop > TAG_NAME';
 
 					}
@@ -63,11 +60,6 @@ pipeline{
 			steps{
 				script {
 
-					// TAG_NAME= sh( 
-					// 	script: 'echo $TAG_NAME',
-					// 	returnStatus: true
-					// 	 )
-
 					echo "---------------building---------------";
 					echo "building docker image via built in function";
 					IMG = docker.build("$REPO:$TAG_NAME");
@@ -91,13 +83,7 @@ pipeline{
 				      script{
 						echo "---------------pushing to docker hub---------------";
 
-						// TAG_NAME= sh( 
-						// 	script: 'echo $TAG_NAME',
-						// 	returnStatus: true
-						// 	)
-
-
-					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+					      withCredentials([usernamePassword(credentialsId: "docker_token", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 							echo "deploying: $IMG";
 							IMG.push(TAG_NAME);
 							sh "docker rmi $IMG.id"
