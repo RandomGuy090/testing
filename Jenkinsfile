@@ -40,7 +40,7 @@ pipeline{
 				script {
 					echo "---------------testing---------------";
 					echo "list all images built";
-					sh "docker images ls";
+					sh "docker images";
 					echo "$IMG";
 				}
 			}
@@ -60,8 +60,9 @@ pipeline{
 						echo "---------------pushing to docker hub---------------";
 					      
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-							sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-						      sh "docker push $REPO:$TAG_NAME";
+							// sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+						    //   sh "docker push $REPO:$TAG_NAME";
+							$IMG.push("${REPO}:${TAG_NAME}")
 						}
 					}
 			    } 
