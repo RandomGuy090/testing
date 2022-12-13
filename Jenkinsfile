@@ -18,12 +18,13 @@ pipeline{
 		stage("Preparing"){
 			steps{
 				script{
-        
-          if( env.BRANCH_NAME != "main" ) {
-					  	currentBuild.result = 'SUCCESS'
-					  	return
-					  }
-          
+					echo "$env.BRANCH_NAME";
+					if( env.BRANCH_NAME != "main" ) {
+						currentBuild.result = 'SUCCESS'
+						return
+					}
+					
+
 					sh "apt update && apt upgrade -y ";
 					sh "apt install python3-pip -y ";
 					
