@@ -63,6 +63,8 @@ pipeline{
 							echo "deploying: $IMG";
 
 							IMG.push(TAG_NAME);
+							echo "$IMG.id";
+							sh "docker rmi $IMG.id"
 						}
 					}
 			    } 
