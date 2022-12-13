@@ -1,4 +1,11 @@
 pipeline{
+	
+	if( env.BRANCH_NAME != "main" ) {
+		currentBuild.result = 'SUCCESS'
+		return
+	}
+	
+	
 	agent any
 	environment {
 
@@ -8,11 +15,10 @@ pipeline{
 		
 		REPO = "$REPO_USER/$REPO_NAME";
 
-
 	}
 
 	stages{
-		stage("prepare"){
+		stage("Preparing"){
 			steps{
 				script{
 					sh "apt update && apt upgrade -y ";
@@ -26,23 +32,18 @@ pipeline{
 				}
 			}
 		}
-		stage("build"){
+		stage("Building"){
 			steps{
 				script {
 					echo "---------------building---------------";
-
-					// echo "building docker image via shell";
-					// sh 'docker build -t randomguy090/testing:latest .';
 					echo "building docker image via built in function";
-					// IMG = docker.image("xD");
-					// echo "id of container: ${IMG}";
 					IMG = docker.build("$REPO:$TAG_name");
 					echo "build image: $IMG";
 
 				}
 			}
 		}
-		stage("test"){
+		stage("Testing"){
 			steps{
 				script {
 					echo "---------------testing---------------";
@@ -58,12 +59,8 @@ pipeline{
 						echo "---------------pushing to docker hub---------------";
 
 					      withCredentials([usernamePassword(credentialsId: "f0713cc8-1b33-42bb-8611-b151f7db8717", passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-							// sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-						    //   sh "docker push $REPO:$TAG_NAME";
 							echo "deploying: $IMG";
-
 							IMG.push(TAG_NAME);
-							echo "$IMG.id";
 							sh "docker rmi $IMG.id"
 						}
 					}
