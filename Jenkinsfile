@@ -87,6 +87,7 @@ pipeline{
 							echo "deploying: $IMG";
 							IMG.push(TAG_NAME);
 							sh "docker rmi $IMG.id"
+						      
 						}
 					}
 			    } 
@@ -97,6 +98,24 @@ pipeline{
 			steps{	
 				script {
 					echo "---------------deploying---------------";
+
+				}
+			}
+		}
+		
+		stage("release"){
+			steps{	
+				script {
+					withCredentials([usernamePassword(credentialsId: "github_token", passwordVariable: 'githubSecret', usernameVariable: 'githubUser')]) {
+							sh "curl https://raw.githubusercontent.com/RandomGuy090/github-auto-release/main/auto-release.sh > run.sh";
+
+							if( env.BRANCH_NAME == "main"){
+								sh "bash run.sh -r https://api.github.com/repos/RandomGuy090/testing/releases -t $githubSecret "
+							}else{
+								sh "bash run.sh -r https://api.github.com/repos/RandomGuy090/testing/releases -t $githubSecret -p "
+							}
+						}
+					
 
 				}
 			}
