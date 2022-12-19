@@ -103,5 +103,18 @@ pipeline{
 			}
 		}
 		
+		stage("release"){
+			steps{	
+				script {
+					withCredentials([usernamePassword(credentialsId: "github_token", passwordVariable: 'githubSecret', usernameVariable: 'githubUser')]) {
+							sh "curl https://raw.githubusercontent.com/RandomGuy090/github-auto-release/main/auto-release.sh > run.sh";
+							sh "bash run.sh -r https://api.github.com/repos/RandomGuy090/testing/releases -t $githubSecret "
+						}
+					
+
+				}
+			}
+		}
+		
 	}
 }
