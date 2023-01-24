@@ -4,9 +4,11 @@ class Hello_world:
 	def __init__(self):
 		print("Hello_world class initialized")
 
+
 class Simple_calculator():
 	
 	def addition(self, x, y):
+		print("dfzxytfh")
 		return x+y
 
 	def subtraction(self, x, y):
