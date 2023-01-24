@@ -7,6 +7,7 @@ pipeline{
 		REPO_USER = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[-2].toLowerCase()}";
 		REPO_NAME = "${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]}";
 		
+		
 		REPO = "$REPO_USER/$REPO_NAME";
 		RUN_FOR = "main,develop";
 		
@@ -120,6 +121,18 @@ pipeline{
 				}
 			}
 		}
+		stage("email"){
+
+			post {
+
+
+				
+				always {
+					emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+				}
+			}
+		}
+
 		
 	}
 }
