@@ -122,10 +122,9 @@ pipeline{
 		}		
 	}
 	post{
-			always{
-				mail to: "kubamaciej2003@gmail.com",
-				subject: "Test Email",
-				body: "Test"
-			}
+		always{
+			subject: "Test Email",
+			body: "Test"
 		}
+	}
 }
