@@ -124,7 +124,7 @@ pipeline{
 	post{
 		always{
 			echo "$env.DEFAULT_RECIPIENTS";
-			mail to: recipientProviders: [$class:'recipients'],
+			mail recipientProviders: [$class: "recipients"],
 			subject: "Test Email",
 			body: "Test"
 		}
