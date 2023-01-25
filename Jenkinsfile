@@ -123,6 +123,8 @@ pipeline{
 	}
 	post{
 		always{
+			echo '$DEFAULT_RECIPIENTS';
+			mail to: '$DEFAULT_RECIPIENTS'
 			subject: "Test Email",
 			body: "Test"
 		}
