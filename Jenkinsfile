@@ -121,9 +121,11 @@ pipeline{
 				}
 			}
 		}
-		post{
-			always {
-				emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+		stage("email"){
+			steps{	
+				script {
+					emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+				}
 			}
 		}
 		
