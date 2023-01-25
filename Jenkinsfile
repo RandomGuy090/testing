@@ -116,18 +116,11 @@ pipeline{
 								sh "bash run.sh -r https://api.github.com/repos/RandomGuy090/testing/releases -t $githubSecret -p "
 							}
 						}
-					
-
 				}
+				emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
 			}
 		}
-		stage("email"){
-			steps{	
-				script {
-					emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-				}
-			}
-		}
+		
 		
 	}
 }
